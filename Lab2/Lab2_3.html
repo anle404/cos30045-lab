@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Data Visualization" />
+    <meta name="keywords" content="HTML, CSS, D3" />
+    <meta name="author" content="Le Nguyen Quoc An" />
+
+    <title>Task 2.3 D3 Drawing with Data - Scatter Plot</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+<body>
+    <h1>Drawing with Data</h1>
+
+    <script>
+        var w = 600;
+        var h = 100;
+
+        var dataset = [
+            [5, 20, 3],
+            [480, 90, 3],
+            [250, 50, 5],
+            [100, 33, 2],
+            [330, 95, 6],
+            [410, 12, 5],
+            [475, 44, 8],
+            [25, 67, 10],
+            [85, 21, 3],
+            [220, 88, 7]
+        ];
+
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+                    .attr("overflow", "visible")
+        
+        svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", (d, i) => d[0])
+            .attr("cy", (d) => d[1])
+            .attr("r", (d) => d[2] * 2)
+            .attr("fill", d => {
+                if (d[0] > 100 && d[1] > 20) {
+                    return "red"
+                } else {
+                    return "slategrey"
+                }
+            })
+
+        svg.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .text(d => {
+                return `${d[0]}, ${d[1]}`
+            })
+            .attr("x", d => d[0] + 5)
+            .attr("y", d => d[1] - 5)
+            .style("font-size", "15px")
+    </script>
+
+    <br>
+    <br>
+    <footer style="color:grey">
+        COS30045 Data Visualization<br>
+        An Le
+    </footer>
+</body>
+</html>
