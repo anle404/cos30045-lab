@@ -41,9 +41,10 @@ function init() {
             .append("text")
             .text(d => d.animal)
             .attr("x", (d, i) => {
-                return i * (w / dataset.length);
+                return i * (w / dataset.length) + (w / dataset.length)/2;
             })
             .attr("y", h + 15)
+            .attr("text-anchor", "middle")
             .style("font-size", "12px")
     }
 }
